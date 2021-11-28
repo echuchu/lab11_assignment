@@ -202,6 +202,50 @@ function renderCreate() {
 }
 
 
+// Creates all of the DOM nodes that are unique to the View page
+function renderView(contact) {
+    
+    let elementDivContactInfo = createElement("div", "contactinfo")
+
+    let elementDivContactName = createElement("div", "contactname")
+    elementDivContactName.textContent = ` ${contact.name} `
+
+    let elementImg = document.createElement("img")
+    setMultipleAttributes(elementImg, {
+        "src": "./img/profile.jpg",
+        "class": "profilepic",
+        "alt": "Profile picture"
+    })
+
+    elementDivContactName.appendChild(elementImg)
+
+    let elementDivContactEmail = createElement("div", "contactemail")
+    elementDivContactEmail.textContent = `email: ${contact.email}`
+
+    let elementDivContactPhone = createElement("div", "contactphone")
+    elementDivContactPhone.textContent = `cell: ${contact.phone}`
+
+    let elementDivContactAddress = createElement("div", "contactaddress")
+    elementDivContactAddress.textContent = `address: ${contact.address}`
+
+    let elementDivButtons = createElement("div", "buttons")
+
+    let elementButtonEdit = createElement("button", "button edit")
+    elementButtonEdit.value = "Edit"
+    elementButtonEdit.textContent = "Edit"
+
+    let elementButtonClose = createElement("button", "button close")
+    elementButtonClose.value = "Close"
+    elementButtonClose.textContent = "Close"
+
+    elementDivButtons.append(elementButtonEdit, elementButtonClose)
+
+    elementDivContactInfo.append(elementDivContactName, elementDivContactEmail, elementDivContactPhone, elementDivContactAddress, elementDivButtons)
+    
+    elementDivMain.appendChild(elementDivContactInfo)
+}
+
+
 // ***** New code for Lab 11 Assignment
 
 // (1) Create global contact list
@@ -258,6 +302,37 @@ linkCreate.addEventListener("click", (e) => {
     renderCreate()
     e.preventDefault()
 })
+
+
+
+// #FIXME breaks when going back to #contacthome
+// (4) edit createSingleIndex() for click handler
+
+// Creates a DOM node that represents a single index card for the Index page
+function createSingleIndex(contact) {
+
+    let elementA = document.createElement("a")
+    elementA.setAttribute("href", "page3.html")
+
+    let elementDiv = createElement("div", "contact")
+
+    let elementP = document.createElement("p")
+    elementP.textContent = `${contact["name"]}`
+    
+    elementDiv.appendChild(elementP)
+    elementA.appendChild(elementDiv)
+    
+    elementA.addEventListener("click", function (e) {
+        for (let i = 0; i < contactList.length; i++) {
+            if (contactList[i]["name"] = this.firstChild.firstChild.textContent) {
+                cleanUpMain()
+                renderView(contactList[i])
+                e.preventDefault()
+            }
+        }
+    })
+    return elementA
+}
 
 
 
