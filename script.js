@@ -95,7 +95,6 @@ linkCreate.addEventListener("click", (e) => {
 
 
 
-// #FIXME breaks when going back to #contacthome
 // (4) edit createSingleIndex() for click handler
 
 // Creates a DOM node that represents a single index card for the Index page
@@ -114,7 +113,7 @@ function createSingleIndex(contact) {
     
     elementA.addEventListener("click", function (e) {
         for (let i = 0; i < contactList.length; i++) {
-            if (contactList[i]["name"] = this.firstChild.firstChild.textContent) {
+            if (contactList[i]["name"] == this.firstChild.firstChild.textContent) {
                 cleanUpMain()
                 renderView(contactList[i])
                 e.preventDefault()
@@ -127,7 +126,7 @@ function createSingleIndex(contact) {
 
 
 // (5) add event listener to close button in renderView
-// (6) ensure clicking on 'edit' does nothing
+// (6) ensure clicking on 'edit' does nothing (did not see bonus?)
 
 function renderView(contact) {
     
@@ -219,7 +218,6 @@ function renderCreate() {
         "name": "contactname",
         "placeholder": "Contact Name"
     })
-    // elementInputContactName.value = contact.name
 
     let elementButtonExtraNameField = document.createElement("button")
     setMultipleAttributes(elementButtonExtraNameField, {
@@ -238,7 +236,6 @@ function renderCreate() {
         "name": "contactphone",
         "placeholder": "Contact Phone"
     })
-    // elementInputContactPhone.value = contact.phone
     
     let elementButtonExtraPhoneField = document.createElement("button")
     setMultipleAttributes(elementButtonExtraPhoneField, {
@@ -257,7 +254,6 @@ function renderCreate() {
         "name": "contactaddress",
         "placeholder": "Contact Address"
     })
-    // elementInputContactAddress.value = contact.address
     
     let elementButtonExtraAddressField = document.createElement("button")
     setMultipleAttributes(elementButtonExtraAddressField, {
@@ -276,7 +272,6 @@ function renderCreate() {
         "name": "contactemail",
         "placeholder": "Contact Email"
     })
-    // elementInputContactEmail.value = contact.email
     
     let elementButtonExtraEmailField = document.createElement("button")
     setMultipleAttributes(elementButtonExtraEmailField, {
@@ -289,6 +284,8 @@ function renderCreate() {
     // End of Form Buttons
 
     let elementDivButtons = createElement("div", "buttons")
+
+    // Save Contact Button
 
     let elementButtonSaveContact = document.createElement("button")
     setMultipleAttributes(elementButtonSaveContact, {
@@ -310,6 +307,8 @@ function renderCreate() {
         renderView(newContact)
         e.preventDefault()
     })
+
+    // Cancel Button
 
     let elementButtonCancel = document.createElement("button")
     setMultipleAttributes(elementButtonCancel, {
