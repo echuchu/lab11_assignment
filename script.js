@@ -1,4 +1,210 @@
-// (1)
+const elementDivMain = document.querySelector(".main")
+const linkContacts = document.querySelector("#contactshome")
+const linkCreate = document.querySelector("#newcontact")
+
+
+// ***** Code from Assignment Part B, some of it is modified
+
+// Helper function to create element and set classname
+function createElement(tag, className) {
+    let element = document.createElement(tag)
+    element.className = className
+    return element
+}
+
+// Helper function to set multiple attributes
+function setMultipleAttributes(element, attributes) {
+    for (var attributeName in attributes) {
+       element.setAttribute(attributeName, attributes[attributeName])
+    }
+ }
+
+// Removes all of the DOM nodes in div.main
+function cleanUpMain() {
+    while (elementDivMain.firstChild) {
+        elementDivMain.removeChild(elementDivMain.firstChild)
+    }
+}
+
+// Creates and outputs a DOM node that is a single index/contact card
+function createSingleIndex(contact) {
+
+    let elementA = document.createElement("a")
+    elementA.setAttribute("href", "page3.html")
+
+    let elementDiv = createElement("div", "contact")
+
+    let elementP = document.createElement("p")
+    elementP.textContent = `${contact["name"]}`
+    
+    elementDiv.appendChild(elementP)
+    elementA.appendChild(elementDiv)
+    
+    return elementA
+}
+
+// Creates all of the DOM nodes that are unique to the index/Contacts page
+function renderIndex(contacts) {
+
+    for (let i = 0; i < contacts.length; i++) {
+        
+        let contact = contacts[i]
+
+        elementDivMain.appendChild(createSingleIndex(contact))
+    }   
+}
+
+
+// Creates all of the DOM nodes that are unique to the Create page
+// Removed parameter so form does not auto-populate
+function renderCreate() {
+    
+    //Top divs of main
+    let elementDivContactEdit = createElement("div", "contactedit")
+
+    let elementDivContactImg = createElement("div", "contactimg")
+
+    let elementImgProfilePic = document.createElement("img")
+    setMultipleAttributes(elementImgProfilePic, {
+        "src": "./img/profile.jpg",
+        "class": "profilepic",
+        "alt": "Profile picture"
+    })
+
+    //Append top divs in main
+    elementDivContactImg.append(elementImgProfilePic)
+    elementDivContactEdit.append(elementDivContactImg)
+
+    //Bottom divs of main
+    let elementDivForm = createElement("div", "form")
+
+    let elementForm = document.createElement("form")
+
+    // Contact Name
+
+    let elementInputContactName = document.createElement("input")
+    setMultipleAttributes(elementInputContactName, {
+        "type": "text",
+        "id": "contactname",
+        "name": "contactname",
+        "placeholder": "Contact Name"
+    })
+    // elementInputContactName.value = contact.name
+
+    let elementButtonExtraNameField = document.createElement("button")
+    setMultipleAttributes(elementButtonExtraNameField, {
+        "class": "extrafield",
+        "id": "extranamefield",
+        "name": "extranamefield"
+    })
+    elementButtonExtraNameField.textContent = "+"
+
+    // Contact Phone
+
+    let elementInputContactPhone = document.createElement("input")
+    setMultipleAttributes(elementInputContactPhone, {
+        "type": "tel",
+        "id": "contactphone",
+        "name": "contactphone",
+        "placeholder": "Contact Phone"
+    })
+    // elementInputContactPhone.value = contact.phone
+    
+    let elementButtonExtraPhoneField = document.createElement("button")
+    setMultipleAttributes(elementButtonExtraPhoneField, {
+        "class": "extrafield",
+        "id": "extraphonefield",
+        "name": "extraphonefield"
+    })
+    elementButtonExtraPhoneField.textContent = "+"
+
+    // Contact Address
+
+    let elementInputContactAddress = document.createElement("input")
+    setMultipleAttributes(elementInputContactAddress, {
+        "type": "tel",
+        "id": "contactaddress",
+        "name": "contactaddress",
+        "placeholder": "Contact Address"
+    })
+    // elementInputContactAddress.value = contact.address
+    
+    let elementButtonExtraAddressField = document.createElement("button")
+    setMultipleAttributes(elementButtonExtraAddressField, {
+        "class": "extrafield",
+        "id": "extraaddressfield",
+        "name": "extraaddressfield"
+    })
+    elementButtonExtraAddressField.textContent = "+"
+
+    // Contact Email
+
+    let elementInputContactEmail = document.createElement("input")
+    setMultipleAttributes(elementInputContactEmail, {
+        "type": "tel",
+        "id": "contactemail",
+        "name": "contactemail",
+        "placeholder": "Contact Email"
+    })
+    // elementInputContactEmail.value = contact.email
+    
+    let elementButtonExtraEmailField = document.createElement("button")
+    setMultipleAttributes(elementButtonExtraEmailField, {
+        "class": "extrafield",
+        "id": "extraemailfield",
+        "name": "extraemailfield"
+    })
+    elementButtonExtraEmailField.textContent = "+"
+
+    // End of Form Buttons
+
+    let elementDivButtons = createElement("div", "buttons")
+
+    let elementButtonSaveContact = document.createElement("button")
+    setMultipleAttributes(elementButtonSaveContact, {
+        "type": "submit",
+        "class": "button save",
+        "id": "savecontact",
+        "name": "savecontact"
+    })
+    elementButtonSaveContact.textContent = "Save Contact"
+
+    let elementButtonCancel = document.createElement("button")
+    setMultipleAttributes(elementButtonCancel, {
+        "type": "reset",
+        "class": "button cancel",
+        "id": "cancel",
+        "name": "cancel"
+    })
+    elementButtonCancel.textContent = "Cancel"
+    
+    //Append buttons
+    elementDivButtons.append(elementButtonSaveContact, elementButtonCancel)
+
+    //Arrays of elements
+    let inputs = [elementInputContactName, elementInputContactPhone, elementInputContactAddress, elementInputContactEmail]
+    
+    let inputbuttons = [elementButtonExtraNameField, elementButtonExtraPhoneField, elementButtonExtraAddressField, elementButtonExtraEmailField]
+    
+    //Loop to build Input Container divs and append its children
+    for (let i = 0; i <=3 ; i++) {
+        let elementDivInputContainer = document.createElement("div")
+        elementDivInputContainer.className = "inputcontainer"
+        elementDivInputContainer.append(inputs[i], inputbuttons[i])
+        elementForm.append(elementDivInputContainer)
+    }
+
+    // Finish Appending
+    elementForm.append(elementDivButtons)
+    elementDivForm.append(elementForm)
+    elementDivContactEdit.append(elementDivForm)
+    elementDivMain.append(elementDivContactEdit)
+}
+
+
+// ***** New code for Lab 11 Assignment
+
+// (1) Create global contact list
 
 let contactList = [
     {
@@ -35,64 +241,21 @@ let contactList = [
 
 
 
-// (2)
-
-const divMain = document.querySelector(".main")
-
-// Helper function to create element and set classname
-function createElement(tag, className) {
-    let element = document.createElement(tag)
-    element.className = className
-    return element
-}
-
-// Helper function to set multiple attributes
-function setMultipleAttributes(element, attributes) {
-    for (var attributeName in attributes) {
-       element.setAttribute(attributeName, attributes[attributeName])
-    }
- }
-
-// Removes all of the DOM nodes in div.main
-function cleanUpMain() {
-    while (divMain.firstChild) {
-        divMain.removeChild(divMain.firstChild)
-    }
-}
-
-// Creates and outputs a DOM node that is a single index/contact card
-function createSingleIndex(contact) {
-
-    let elementA = document.createElement("a")
-    elementA.setAttribute("href", "page3.html")
-
-    let elementDiv = createElement("div", "contact")
-
-    let elementP = document.createElement("p")
-    elementP.textContent = `${contact["name"]}`
-    
-    elementDiv.appendChild(elementP)
-    elementA.appendChild(elementDiv)
-    
-    return elementA
-}
-
-// Creates all of the DOM nodes that are unique to the index/Contacts page
-function renderIndex(contacts) {
-
-    for (let i = 0; i < contacts.length; i++) {
-        
-        let contact = contacts[i]
-
-        divMain.appendChild(createSingleIndex(contact))
-    }   
-}
-
-const linkContacts = document.querySelector("#contactshome")
+// (2) #contacthome Event Listener 
 
 linkContacts.addEventListener("click", (e) => {
     cleanUpMain()
     renderIndex(contactList)
+    e.preventDefault()
+})
+
+
+
+// 3 #newcontact Event Listener
+
+linkCreate.addEventListener("click", (e) => {
+    cleanUpMain()
+    renderCreate()
     e.preventDefault()
 })
 
