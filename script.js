@@ -113,7 +113,7 @@ function createSingleIndex(contact) {
     
     elementA.addEventListener("click", function (e) {
         for (let i = 0; i < contactList.length; i++) {
-            if (contactList[i]["name"] == this.firstChild.firstChild.textContent) {
+            if (contactList[i]["name"] == elementP.textContent) {
                 cleanUpMain()
                 renderView(contactList[i])
                 e.preventDefault()
