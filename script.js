@@ -26,22 +26,22 @@ function cleanUpMain() {
     }
 }
 
-// Creates and outputs a DOM node that is a single index/contact card
-function createSingleIndex(contact) {
+// // Creates and outputs a DOM node that is a single index/contact card
+// function createSingleIndex(contact) {
 
-    let elementA = document.createElement("a")
-    elementA.setAttribute("href", "page3.html")
+//     let elementA = document.createElement("a")
+//     elementA.setAttribute("href", "page3.html")
 
-    let elementDiv = createElement("div", "contact")
+//     let elementDiv = createElement("div", "contact")
 
-    let elementP = document.createElement("p")
-    elementP.textContent = `${contact["name"]}`
+//     let elementP = document.createElement("p")
+//     elementP.textContent = `${contact["name"]}`
     
-    elementDiv.appendChild(elementP)
-    elementA.appendChild(elementDiv)
+//     elementDiv.appendChild(elementP)
+//     elementA.appendChild(elementDiv)
     
-    return elementA
-}
+//     return elementA
+// }
 
 // Creates all of the DOM nodes that are unique to the index/Contacts page
 function renderIndex(contacts) {
@@ -202,48 +202,7 @@ function renderCreate() {
 }
 
 
-// Creates all of the DOM nodes that are unique to the View page
-function renderView(contact) {
-    
-    let elementDivContactInfo = createElement("div", "contactinfo")
 
-    let elementDivContactName = createElement("div", "contactname")
-    elementDivContactName.textContent = ` ${contact.name} `
-
-    let elementImg = document.createElement("img")
-    setMultipleAttributes(elementImg, {
-        "src": "./img/profile.jpg",
-        "class": "profilepic",
-        "alt": "Profile picture"
-    })
-
-    elementDivContactName.appendChild(elementImg)
-
-    let elementDivContactEmail = createElement("div", "contactemail")
-    elementDivContactEmail.textContent = `email: ${contact.email}`
-
-    let elementDivContactPhone = createElement("div", "contactphone")
-    elementDivContactPhone.textContent = `cell: ${contact.phone}`
-
-    let elementDivContactAddress = createElement("div", "contactaddress")
-    elementDivContactAddress.textContent = `address: ${contact.address}`
-
-    let elementDivButtons = createElement("div", "buttons")
-
-    let elementButtonEdit = createElement("button", "button edit")
-    elementButtonEdit.value = "Edit"
-    elementButtonEdit.textContent = "Edit"
-
-    let elementButtonClose = createElement("button", "button close")
-    elementButtonClose.value = "Close"
-    elementButtonClose.textContent = "Close"
-
-    elementDivButtons.append(elementButtonEdit, elementButtonClose)
-
-    elementDivContactInfo.append(elementDivContactName, elementDivContactEmail, elementDivContactPhone, elementDivContactAddress, elementDivButtons)
-    
-    elementDivMain.appendChild(elementDivContactInfo)
-}
 
 
 // ***** New code for Lab 11 Assignment
@@ -332,6 +291,58 @@ function createSingleIndex(contact) {
         }
     })
     return elementA
+}
+
+
+
+// (5) add event listener to close button in renderView
+
+function renderView(contact) {
+    
+    let elementDivContactInfo = createElement("div", "contactinfo")
+
+    let elementDivContactName = createElement("div", "contactname")
+    elementDivContactName.textContent = ` ${contact.name} `
+
+    let elementImg = document.createElement("img")
+    setMultipleAttributes(elementImg, {
+        "src": "./img/profile.jpg",
+        "class": "profilepic",
+        "alt": "Profile picture"
+    })
+
+    elementDivContactName.appendChild(elementImg)
+
+    let elementDivContactEmail = createElement("div", "contactemail")
+    elementDivContactEmail.textContent = `email: ${contact.email}`
+
+    let elementDivContactPhone = createElement("div", "contactphone")
+    elementDivContactPhone.textContent = `cell: ${contact.phone}`
+
+    let elementDivContactAddress = createElement("div", "contactaddress")
+    elementDivContactAddress.textContent = `address: ${contact.address}`
+
+    let elementDivButtons = createElement("div", "buttons")
+
+    let elementButtonEdit = createElement("button", "button edit")
+    elementButtonEdit.value = "Edit"
+    elementButtonEdit.textContent = "Edit"
+
+    let elementButtonClose = createElement("button", "button close")
+    elementButtonClose.value = "Close"
+    elementButtonClose.textContent = "Close"
+
+    elementButtonClose.addEventListener("click", function (e) {
+        cleanUpMain()
+        renderIndex(contactList)
+        e.preventDefault()
+    })
+
+    elementDivButtons.append(elementButtonEdit, elementButtonClose)
+
+    elementDivContactInfo.append(elementDivContactName, elementDivContactEmail, elementDivContactPhone, elementDivContactAddress, elementDivButtons)
+    
+    elementDivMain.appendChild(elementDivContactInfo)
 }
 
 
