@@ -55,151 +55,6 @@ function renderIndex(contacts) {
 }
 
 
-// Creates all of the DOM nodes that are unique to the Create page
-// Removed parameter so form does not auto-populate
-function renderCreate() {
-    
-    //Top divs of main
-    let elementDivContactEdit = createElement("div", "contactedit")
-
-    let elementDivContactImg = createElement("div", "contactimg")
-
-    let elementImgProfilePic = document.createElement("img")
-    setMultipleAttributes(elementImgProfilePic, {
-        "src": "./img/profile.jpg",
-        "class": "profilepic",
-        "alt": "Profile picture"
-    })
-
-    //Append top divs in main
-    elementDivContactImg.append(elementImgProfilePic)
-    elementDivContactEdit.append(elementDivContactImg)
-
-    //Bottom divs of main
-    let elementDivForm = createElement("div", "form")
-
-    let elementForm = document.createElement("form")
-
-    // Contact Name
-
-    let elementInputContactName = document.createElement("input")
-    setMultipleAttributes(elementInputContactName, {
-        "type": "text",
-        "id": "contactname",
-        "name": "contactname",
-        "placeholder": "Contact Name"
-    })
-    // elementInputContactName.value = contact.name
-
-    let elementButtonExtraNameField = document.createElement("button")
-    setMultipleAttributes(elementButtonExtraNameField, {
-        "class": "extrafield",
-        "id": "extranamefield",
-        "name": "extranamefield"
-    })
-    elementButtonExtraNameField.textContent = "+"
-
-    // Contact Phone
-
-    let elementInputContactPhone = document.createElement("input")
-    setMultipleAttributes(elementInputContactPhone, {
-        "type": "tel",
-        "id": "contactphone",
-        "name": "contactphone",
-        "placeholder": "Contact Phone"
-    })
-    // elementInputContactPhone.value = contact.phone
-    
-    let elementButtonExtraPhoneField = document.createElement("button")
-    setMultipleAttributes(elementButtonExtraPhoneField, {
-        "class": "extrafield",
-        "id": "extraphonefield",
-        "name": "extraphonefield"
-    })
-    elementButtonExtraPhoneField.textContent = "+"
-
-    // Contact Address
-
-    let elementInputContactAddress = document.createElement("input")
-    setMultipleAttributes(elementInputContactAddress, {
-        "type": "tel",
-        "id": "contactaddress",
-        "name": "contactaddress",
-        "placeholder": "Contact Address"
-    })
-    // elementInputContactAddress.value = contact.address
-    
-    let elementButtonExtraAddressField = document.createElement("button")
-    setMultipleAttributes(elementButtonExtraAddressField, {
-        "class": "extrafield",
-        "id": "extraaddressfield",
-        "name": "extraaddressfield"
-    })
-    elementButtonExtraAddressField.textContent = "+"
-
-    // Contact Email
-
-    let elementInputContactEmail = document.createElement("input")
-    setMultipleAttributes(elementInputContactEmail, {
-        "type": "tel",
-        "id": "contactemail",
-        "name": "contactemail",
-        "placeholder": "Contact Email"
-    })
-    // elementInputContactEmail.value = contact.email
-    
-    let elementButtonExtraEmailField = document.createElement("button")
-    setMultipleAttributes(elementButtonExtraEmailField, {
-        "class": "extrafield",
-        "id": "extraemailfield",
-        "name": "extraemailfield"
-    })
-    elementButtonExtraEmailField.textContent = "+"
-
-    // End of Form Buttons
-
-    let elementDivButtons = createElement("div", "buttons")
-
-    let elementButtonSaveContact = document.createElement("button")
-    setMultipleAttributes(elementButtonSaveContact, {
-        "type": "submit",
-        "class": "button save",
-        "id": "savecontact",
-        "name": "savecontact"
-    })
-    elementButtonSaveContact.textContent = "Save Contact"
-
-    let elementButtonCancel = document.createElement("button")
-    setMultipleAttributes(elementButtonCancel, {
-        "type": "reset",
-        "class": "button cancel",
-        "id": "cancel",
-        "name": "cancel"
-    })
-    elementButtonCancel.textContent = "Cancel"
-    
-    //Append buttons
-    elementDivButtons.append(elementButtonSaveContact, elementButtonCancel)
-
-    //Arrays of elements
-    let inputs = [elementInputContactName, elementInputContactPhone, elementInputContactAddress, elementInputContactEmail]
-    
-    let inputbuttons = [elementButtonExtraNameField, elementButtonExtraPhoneField, elementButtonExtraAddressField, elementButtonExtraEmailField]
-    
-    //Loop to build Input Container divs and append its children
-    for (let i = 0; i <=3 ; i++) {
-        let elementDivInputContainer = document.createElement("div")
-        elementDivInputContainer.className = "inputcontainer"
-        elementDivInputContainer.append(inputs[i], inputbuttons[i])
-        elementForm.append(elementDivInputContainer)
-    }
-
-    // Finish Appending
-    elementForm.append(elementDivButtons)
-    elementDivForm.append(elementForm)
-    elementDivContactEdit.append(elementDivForm)
-    elementDivMain.append(elementDivContactEdit)
-}
 
 
 
@@ -350,3 +205,155 @@ function renderView(contact) {
 
 
 
+// (7) event listener for cancel in renderCreate
+
+function renderCreate() {
+    // Creates all of the DOM nodes that are unique to the Create page
+    // Removed parameter so form does not auto-populate
+
+    //Top divs of main
+    let elementDivContactEdit = createElement("div", "contactedit")
+
+    let elementDivContactImg = createElement("div", "contactimg")
+
+    let elementImgProfilePic = document.createElement("img")
+    setMultipleAttributes(elementImgProfilePic, {
+        "src": "./img/profile.jpg",
+        "class": "profilepic",
+        "alt": "Profile picture"
+    })
+
+    //Append top divs in main
+    elementDivContactImg.append(elementImgProfilePic)
+    elementDivContactEdit.append(elementDivContactImg)
+
+    //Bottom divs of main
+    let elementDivForm = createElement("div", "form")
+
+    let elementForm = document.createElement("form")
+
+    // Contact Name
+
+    let elementInputContactName = document.createElement("input")
+    setMultipleAttributes(elementInputContactName, {
+        "type": "text",
+        "id": "contactname",
+        "name": "contactname",
+        "placeholder": "Contact Name"
+    })
+    // elementInputContactName.value = contact.name
+
+    let elementButtonExtraNameField = document.createElement("button")
+    setMultipleAttributes(elementButtonExtraNameField, {
+        "class": "extrafield",
+        "id": "extranamefield",
+        "name": "extranamefield"
+    })
+    elementButtonExtraNameField.textContent = "+"
+
+    // Contact Phone
+
+    let elementInputContactPhone = document.createElement("input")
+    setMultipleAttributes(elementInputContactPhone, {
+        "type": "tel",
+        "id": "contactphone",
+        "name": "contactphone",
+        "placeholder": "Contact Phone"
+    })
+    // elementInputContactPhone.value = contact.phone
+    
+    let elementButtonExtraPhoneField = document.createElement("button")
+    setMultipleAttributes(elementButtonExtraPhoneField, {
+        "class": "extrafield",
+        "id": "extraphonefield",
+        "name": "extraphonefield"
+    })
+    elementButtonExtraPhoneField.textContent = "+"
+
+    // Contact Address
+
+    let elementInputContactAddress = document.createElement("input")
+    setMultipleAttributes(elementInputContactAddress, {
+        "type": "tel",
+        "id": "contactaddress",
+        "name": "contactaddress",
+        "placeholder": "Contact Address"
+    })
+    // elementInputContactAddress.value = contact.address
+    
+    let elementButtonExtraAddressField = document.createElement("button")
+    setMultipleAttributes(elementButtonExtraAddressField, {
+        "class": "extrafield",
+        "id": "extraaddressfield",
+        "name": "extraaddressfield"
+    })
+    elementButtonExtraAddressField.textContent = "+"
+
+    // Contact Email
+
+    let elementInputContactEmail = document.createElement("input")
+    setMultipleAttributes(elementInputContactEmail, {
+        "type": "tel",
+        "id": "contactemail",
+        "name": "contactemail",
+        "placeholder": "Contact Email"
+    })
+    // elementInputContactEmail.value = contact.email
+    
+    let elementButtonExtraEmailField = document.createElement("button")
+    setMultipleAttributes(elementButtonExtraEmailField, {
+        "class": "extrafield",
+        "id": "extraemailfield",
+        "name": "extraemailfield"
+    })
+    elementButtonExtraEmailField.textContent = "+"
+
+    // End of Form Buttons
+
+    let elementDivButtons = createElement("div", "buttons")
+
+    let elementButtonSaveContact = document.createElement("button")
+    setMultipleAttributes(elementButtonSaveContact, {
+        "type": "submit",
+        "class": "button save",
+        "id": "savecontact",
+        "name": "savecontact"
+    })
+    elementButtonSaveContact.textContent = "Save Contact"
+
+    let elementButtonCancel = document.createElement("button")
+    setMultipleAttributes(elementButtonCancel, {
+        "type": "reset",
+        "class": "button cancel",
+        "id": "cancel",
+        "name": "cancel"
+    })
+    elementButtonCancel.textContent = "Cancel"
+    elementButtonCancel.addEventListener("click", function (e) {
+        cleanUpMain()
+        renderIndex(contactList)
+        e.preventDefault()
+    })
+
+    //Append buttons
+    elementDivButtons.append(elementButtonSaveContact, elementButtonCancel)
+
+    //Arrays of elements
+    let inputs = [elementInputContactName, elementInputContactPhone, elementInputContactAddress, elementInputContactEmail]
+    
+    let inputbuttons = [elementButtonExtraNameField, elementButtonExtraPhoneField, elementButtonExtraAddressField, elementButtonExtraEmailField]
+    
+    //Loop to build Input Container divs and append its children
+    for (let i = 0; i <=3 ; i++) {
+        let elementDivInputContainer = document.createElement("div")
+        elementDivInputContainer.className = "inputcontainer"
+        elementDivInputContainer.append(inputs[i], inputbuttons[i])
+        elementForm.append(elementDivInputContainer)
+    }
+
+    // Finish Appending
+    elementForm.append(elementDivButtons)
+    elementDivForm.append(elementForm)
+    elementDivContactEdit.append(elementDivForm)
+    elementDivMain.append(elementDivContactEdit)
+}
