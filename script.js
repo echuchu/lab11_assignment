@@ -26,37 +26,13 @@ function cleanUpMain() {
     }
 }
 
-// // Creates and outputs a DOM node that is a single index/contact card
-// function createSingleIndex(contact) {
-
-//     let elementA = document.createElement("a")
-//     elementA.setAttribute("href", "page3.html")
-
-//     let elementDiv = createElement("div", "contact")
-
-//     let elementP = document.createElement("p")
-//     elementP.textContent = `${contact["name"]}`
-    
-//     elementDiv.appendChild(elementP)
-//     elementA.appendChild(elementDiv)
-    
-//     return elementA
-// }
-
 // Creates all of the DOM nodes that are unique to the index/Contacts page
 function renderIndex(contacts) {
-
     for (let i = 0; i < contacts.length; i++) {
-        
         let contact = contacts[i]
-
         elementDivMain.appendChild(createSingleIndex(contact))
     }   
 }
-
-
-
-
 
 
 
@@ -206,6 +182,8 @@ function renderView(contact) {
 
 
 // (7) event listener for cancel in renderCreate
+// (8) event listener for save in renderCreate
+// (9) create new contact object from Create contact into contactList
 
 function renderCreate() {
     // Creates all of the DOM nodes that are unique to the Create page
@@ -320,6 +298,18 @@ function renderCreate() {
         "name": "savecontact"
     })
     elementButtonSaveContact.textContent = "Save Contact"
+    elementButtonSaveContact.addEventListener("click", function (e) {
+        let newContact = {
+            "name": elementInputContactName.value,
+            "email": elementInputContactEmail.value,
+            "phone": elementInputContactPhone.value,
+            "address": elementInputContactAddress.value,
+        }
+        contactList.push(newContact)
+        cleanUpMain()
+        renderView(newContact)
+        e.preventDefault()
+    })
 
     let elementButtonCancel = document.createElement("button")
     setMultipleAttributes(elementButtonCancel, {
@@ -357,3 +347,10 @@ function renderCreate() {
     elementDivContactEdit.append(elementDivForm)
     elementDivMain.append(elementDivContactEdit)
 }
+
+
+
+// 10 populate index on page load
+window.addEventListener("load", function (e) {
+    renderIndex(contactList)
+})
