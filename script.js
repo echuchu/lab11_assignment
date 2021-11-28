@@ -296,6 +296,7 @@ function createSingleIndex(contact) {
 
 
 // (5) add event listener to close button in renderView
+// (6) ensure clicking on 'edit' does nothing
 
 function renderView(contact) {
     
@@ -327,11 +328,13 @@ function renderView(contact) {
     let elementButtonEdit = createElement("button", "button edit")
     elementButtonEdit.value = "Edit"
     elementButtonEdit.textContent = "Edit"
+    elementButtonEdit.addEventListener("click", function (e) {
+        e.preventDefault()
+    })
 
     let elementButtonClose = createElement("button", "button close")
     elementButtonClose.value = "Close"
     elementButtonClose.textContent = "Close"
-
     elementButtonClose.addEventListener("click", function (e) {
         cleanUpMain()
         renderIndex(contactList)
