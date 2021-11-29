@@ -6,7 +6,7 @@ const linkCreate = document.querySelector("#newcontact")
 // ***** Code from Assignment Part B, some of it is modified
 
 // Helper function to create element and set classname
-function createElement(tag, className) {
+function createElementAndClass(tag, className) {
     let element = document.createElement(tag)
     element.className = className
     return element
@@ -85,7 +85,7 @@ linkContacts.addEventListener("click", (e) => {
 
 
 
-// 3 #newcontact Event Listener
+// (3) #newcontact Event Listener
 
 linkCreate.addEventListener("click", (e) => {
     cleanUpMain()
@@ -103,7 +103,7 @@ function createSingleIndex(contact) {
     let elementA = document.createElement("a")
     elementA.setAttribute("href", "page3.html")
 
-    let elementDiv = createElement("div", "contact")
+    let elementDiv =createElementAndClass("div", "contact")
 
     let elementP = document.createElement("p")
     elementP.textContent = `${contact["name"]}`
@@ -130,9 +130,9 @@ function createSingleIndex(contact) {
 
 function renderView(contact) {
     
-    let elementDivContactInfo = createElement("div", "contactinfo")
+    let elementDivContactInfo = createElementAndClass("div", "contactinfo")
 
-    let elementDivContactName = createElement("div", "contactname")
+    let elementDivContactName = createElementAndClass("div", "contactname")
     elementDivContactName.textContent = ` ${contact.name} `
 
     let elementImg = document.createElement("img")
@@ -144,25 +144,25 @@ function renderView(contact) {
 
     elementDivContactName.appendChild(elementImg)
 
-    let elementDivContactEmail = createElement("div", "contactemail")
+    let elementDivContactEmail = createElementAndClass("div", "contactemail")
     elementDivContactEmail.textContent = `email: ${contact.email}`
 
-    let elementDivContactPhone = createElement("div", "contactphone")
+    let elementDivContactPhone = createElementAndClass("div", "contactphone")
     elementDivContactPhone.textContent = `cell: ${contact.phone}`
 
-    let elementDivContactAddress = createElement("div", "contactaddress")
+    let elementDivContactAddress = createElementAndClass("div", "contactaddress")
     elementDivContactAddress.textContent = `address: ${contact.address}`
 
-    let elementDivButtons = createElement("div", "buttons")
+    let elementDivButtons = createElementAndClass("div", "buttons")
 
-    let elementButtonEdit = createElement("button", "button edit")
+    let elementButtonEdit = createElementAndClass("button", "button edit")
     elementButtonEdit.value = "Edit"
     elementButtonEdit.textContent = "Edit"
     elementButtonEdit.addEventListener("click", function (e) {
         e.preventDefault()
     })
 
-    let elementButtonClose = createElement("button", "button close")
+    let elementButtonClose = createElementAndClass("button", "button close")
     elementButtonClose.value = "Close"
     elementButtonClose.textContent = "Close"
     elementButtonClose.addEventListener("click", function (e) {
@@ -189,9 +189,9 @@ function renderCreate() {
     // Removed parameter so form does not auto-populate
 
     //Top divs of main
-    let elementDivContactEdit = createElement("div", "contactedit")
+    let elementDivContactEdit = createElementAndClass("div", "contactedit")
 
-    let elementDivContactImg = createElement("div", "contactimg")
+    let elementDivContactImg = createElementAndClass("div", "contactimg")
 
     let elementImgProfilePic = document.createElement("img")
     setMultipleAttributes(elementImgProfilePic, {
@@ -205,7 +205,7 @@ function renderCreate() {
     elementDivContactEdit.append(elementDivContactImg)
 
     //Bottom divs of main
-    let elementDivForm = createElement("div", "form")
+    let elementDivForm = createElementAndClass("div", "form")
 
     let elementForm = document.createElement("form")
 
@@ -283,7 +283,7 @@ function renderCreate() {
 
     // End of Form Buttons
 
-    let elementDivButtons = createElement("div", "buttons")
+    let elementDivButtons = createElementAndClass("div", "buttons")
 
     // Save Contact Button
 
@@ -340,6 +340,13 @@ function renderCreate() {
         elementForm.append(elementDivInputContainer)
     }
 
+    //Extra: loop to make clicking on extra input buttons do nothing
+    for (let i = 0; i < inputbuttons.length; i++) {
+        inputbuttons[i].addEventListener("click", function (e) {
+            e.preventDefault()
+        })
+    }
+
     // Finish Appending
     elementForm.append(elementDivButtons)
     elementDivForm.append(elementForm)
@@ -349,7 +356,7 @@ function renderCreate() {
 
 
 
-// 10 populate index on page load
+// (10) populate index on page load
 window.addEventListener("load", function (e) {
     renderIndex(contactList)
 })
